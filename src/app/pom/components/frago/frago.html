@@ -1,0 +1,25 @@
+<div class="container panel panel-default" *ngIf="frago" id="frago-edit">
+  <h3>FRAGO</h3>
+  Select command to edit:
+  <ol>
+    <li *ngFor="let c of frago.commands; let i = index">
+        <span (click)="clickCommand(c)">
+            <span *ngIf="c.UnitCommand!=null">{{c.UnitCommand.UnitName}}: {{c.UnitCommand.ScriptName}}</span>
+            <span *ngIf="c.SingleEntityCommand!=null">{{c.SingleEntityCommand.Receiver}}: {{c.SingleEntityCommand.ScritName}}</span>
+            <button type="button" (click)="deleteCommand(i)">X</button>
+        </span>
+    </li>
+  </ol>
+  <button type="button" (click)="addCommand()">Add Command</button>
+  <div *ngIf="selectedCommand" id="command-edit">
+    <h4>Command</h4>
+    <c2-command [command]="selectedCommand" [taskOrg]="taskOrg" [forceSide]="forceSide"></c2-command>
+  </div>
+
+  <div>
+    <button type="button" (click)="toJson()">{{buttonText}}</button>
+    <div>{{json}}</div>
+  </div>
+
+</div>
+

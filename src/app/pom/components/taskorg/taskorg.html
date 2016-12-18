@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="col-xs-8 col-md-6">
+    <div class="panel panel-default" *ngIf="taskOrg" id="task-org-edit">
+      <h3>Task Organization</h3>
+      <div *ngFor="let f of taskOrg.forceSides">
+        <div>{{f.forceName}}</div>
+        <span *ngFor="let u of f.subordinateUnits; let i = index">
+          <unit-tree [unit]="u" (notifySelectedEntity)='onNotifySelectedEntity($event)'
+                   (notifySelectedUnit)='onNotifySelectedUnit($event)'></unit-tree>
+          <button type="button" (click)="deleteUnit(f, i)">X</button>
+        </span>
+        <button type="button" (click)="addUnitToForce(f)">Add unit to {{f.forceName}}</button>
+      </div>
+
+
+    </div>
+    <div class="panel" id="unit-edit">
+      <div *ngIf="selectedUnit">
+        <taskorg-unit [u]="selectedUnit"></taskorg-unit>
+      </div>
+
+      <div *ngIf="selectedEntity">
+        <taskorg-entity [entity]="selectedEntity"></taskorg-entity>
+      </div>
+    </div>
+
+    <div>
+      <button type="button" (click)="toJson()">{{buttonText}}</button>
+      <div>{{json}}</div>
+    </div>
+  </div>
+  <div class="col-xs-8 col-md-6" *ngIf="frago">
+    <c2-frago [taskOrg]="taskOrg" [frago]="frago" [forceSide]="taskOrg.forceSides[0]"></c2-frago>
+  </div>
+</div>
+<div *ngIf="taskOrg">
+  <div class="panel panel-default">
+    <tactical-map [(taskOrg)]="taskOrg"></tactical-map>
+  </div>
+</div>

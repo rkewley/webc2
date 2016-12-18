@@ -1,0 +1,20 @@
+<h2>Soldier</h2>
+
+<div  *ngIf="orient">
+  <div>
+    <label>Height (cm): </label>
+    <input [(ngModel)]="soldier.heightCm">
+  </div>
+  <div>
+    <label>Weight (kg): </label>
+    <input [(ngModel)]="soldier.weightKg">
+  </div>
+  <div>
+    <label>APFT Run Time Minutes: </label>
+    <input [(ngModel)]="soldier.apftRunMinutes">
+  </div>
+  <div>
+    <label>APFT Run Time Seconds: </label>
+    <input [(ngModel)]="soldier.apftRunSeconds">
+  </div>
+</div>

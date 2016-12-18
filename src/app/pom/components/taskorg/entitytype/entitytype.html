@@ -1,0 +1,22 @@
+<h2>Entity Type</h2>
+
+<div  *ngIf="entityType">
+  <div>
+    <label>Entity Type ID: </label>
+    <input [(ngModel)]="entityType.typeId">
+  </div>
+  <div>
+    <label>NATO App6b Symbol Identifier Code: </label>
+    <input [(ngModel)]="entityType.milstd2525Symbol">
+  </div>
+  <div>
+    <label>ACQUIRE Standard Name: </label>
+    <select [(ngModel)]="entityType.acquireStandardName">
+      <option *ngFor="let a of acquireTypes" value={{a}}>
+        {{a}}
+      </option>
+    </select>
+  </div>
+
+</div>
+

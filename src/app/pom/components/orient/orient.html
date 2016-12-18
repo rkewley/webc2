@@ -1,0 +1,11 @@
+<div  *ngIf="orient">
+  <h4>Orient</h4>
+  <div>
+    <action-trigger [selectedTrigger]="orient.ActionTrigger"></action-trigger>
+  </div>
+  <div>
+    <label>Orientation (degrees): </label>
+    <input [(ngModel)]="orient.OrientationInDegrees">
+  </div>
+</div>
+

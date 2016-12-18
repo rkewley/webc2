@@ -1,0 +1,15 @@
+<div class="container" *ngIf="tacticalAction">
+  <div>
+    <label>Select Action Type: </label>
+    <select [(ngModel)]="tacticalAction.ActionType" (ngModelChange)="actionSelected()">
+      <option *ngFor="let a of actionTypes" [value]="a"> {{a}}</option>>
+    </select>
+  </div>
+  <div *ngIf="tacticalAction.Move!=null">
+    <c2-move [move]="tacticalAction.Move"></c2-move>
+  </div>
+  <div *ngIf="tacticalAction.Orient!=null">
+    <c2-orient [orient]="tacticalAction.Orient"></c2-orient>
+  </div>
+</div>
+

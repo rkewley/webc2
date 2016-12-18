@@ -1,0 +1,40 @@
+<div class="container" *ngIf="unitCommandScript">
+  <div>
+    <label>Unit: </label>
+    <select [(ngModel)]="unitCommandScript.UnitName">
+      <option *ngFor="let n of getUnitNames()" [value]="n">{{n}}</option>
+    </select>
+  </div>
+  <div>
+    <label>Order Name: </label>
+    <input [(ngModel)]="unitCommandScript.ScriptName">
+  </div>
+  <div>
+    <label>Command Sender: </label>
+    <select [(ngModel)]="unitCommandScript.Sender">
+      <option *ngFor="let n of getEntityNames()" [value]="n">{{n}}</option>
+    </select>
+  </div>
+  <div>
+    <label>Command Receiver: </label>
+    <select [(ngModel)]="unitCommandScript.Receiver">
+      <option *ngFor="let n of getEntityNames()" [value]="n">{{n}}</option>
+    </select>
+  </div>
+  <div id="action-edit">
+    <h4>Action</h4>
+    Select action to edit:
+    <ol>
+      <li *ngFor="let a of unitCommandScript.TacticalActions; let i = index">
+        <span (click)="clickAction(a)">
+          {{a.ActionType}} <button type="button" (click)="deleteAction(i)">X</button>
+        </span>
+      </li>
+    </ol>
+    <button type="button" (click)="addAction()">Add Action</button>
+    <div *ngIf="selectedAction!=null">
+      <unit-command [tacticalAction]="selectedAction"></unit-command>
+    </div>
+  </div>
+</div>
+

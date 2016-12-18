@@ -1,0 +1,27 @@
+<div  *ngIf="unit">
+  <span>
+     <button type="button" (click)="toggle()">{{buttonText}}</button>
+    <span (click)="clickUnit(unit)">{{unit.unitName}}</span>
+    <mil-symbol [symbolData]="symbolData(unit.milstd2525Symbol, 15, '', 'true')"></mil-symbol>
+  </span>
+  <ul *ngIf="expanded">
+    <li *ngFor="let e of unit.subordinateEntities; let i = index">
+      <span (click)="clickEntity(e)">
+        <span>{{e.entityName}}: {{e.entityType.typeId}}</span>
+        <mil-symbol [symbolData]="symbolData(e.entityType.milstd2525Symbol, 15, '', 'false')"></mil-symbol>
+        <button type="button" (click)="deleteEntity(i)">X</button>
+      </span>
+    </li>
+    <button type="button" (click)="addEntity(unit.unitId)">Add Entity</button>
+    <li *ngFor="let u of unit.subordinateUnits; let i = index">
+      <span>
+        <unit-tree [unit]="u" (notifySelectedEntity)='onNotifySelectedEntity($event)' (notifySelectedUnit)='onNotifySelectedUnit($event)'></unit-tree>
+        <button type="button" (click)="deleteUnit(i)">X</button>
+      </span>
+    </li>
+    <div>
+      <button type="button" (click)="addUnit(unit.unitId)">Add Unit</button>
+    </div>
+  </ul>
+</div>
+

@@ -1,0 +1,31 @@
+<div class="panel panel-default" *ngIf="taskOrg">
+  Select a graphic to display or edit:
+  <ul>
+    <li *ngFor="let g of taskOrg.graphics; let i = index">
+      <span (click)="clickGraphic(g)">
+        <span>{{g.graphicName}}</span>
+        <button class="btn btn-xs" type="button" (click)="deleteGraphic(g, i)">X</button>
+      </span>
+    </li>
+  </ul>
+  <div>
+    <button type="button" (click)="addNewGraphic()">Add New Graphic</button>
+  </div>
+  <div *ngIf="selectedGraphic && selectedGraphic.graphicName!='Not Editing'">
+    <div>
+      <label>Graphic Name: </label>
+      <input [(ngModel)]="selectedGraphic.graphicName">
+    </div>
+    <div>
+      <label>Select Graphic Type: </label>
+      <select [(ngModel)]="selectedGraphic.graphicType" (ngModelChange)="graphicTypeSelected()">
+        <option *ngFor="let gt of graphicTypes" [value]="gt">{{gt}}</option>
+        >
+      </select>
+    </div>
+    <button type="button" (click)="doneEditing()">Done Editing</button>
+  </div>
+
+</div>
+<div id='googleMap' style='width:800px;height:800px;'></div>
+

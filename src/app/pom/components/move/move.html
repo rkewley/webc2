@@ -1,0 +1,33 @@
+
+
+<div  *ngIf="move">
+  <h4>Move</h4>
+  <div>
+    <action-trigger [selectedTrigger]="move.ActionTrigger"></action-trigger>
+  </div>
+  <div>
+    <label>Altitude above ground level (meters): </label>
+    <input [(ngModel)]="move.AltMetersAGL">
+  </div>
+  <div>
+    <label>Formation: </label>
+    <select [(ngModel)]="move.Formation">
+      <option *ngFor="let f of formationNames" [ngValue]="f"> {{f}}</option>>
+    </select>
+  </div>
+  <div>
+    <label>Movement speed: </label>
+    <select [(ngModel)]="move.MoveSpeed">
+      <option *ngFor="let s of speedNames" [ngValue]="s"> {{s}}</option>>
+    </select>
+  </div>
+  <div>
+    <label>Tactical Graphic: </label>
+    <select [(ngModel)]="move.RouteGraphic">
+      <option *ngFor="let g of graphics" [ngValue]="g">
+        {{g.graphicName}}
+      </option>
+    </select>
+  </div>
+</div>
+

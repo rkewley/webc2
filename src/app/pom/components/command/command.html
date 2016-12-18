@@ -1,0 +1,16 @@
+<div class="container" *ngIf="command">
+  <div>
+    <label>Select Command Type: </label>
+    <select [(ngModel)]="command.CommandType" (ngModelChange)="commandSelected()">
+      <option *ngFor="let c of commandTypes" [ngValue]="c"> {{c}}</option>>
+    </select>
+  </div>
+  <div *ngIf="command.SingleEntityCommand">
+    <c2-entity-command-script [commandScript]="command.SingleEntityCommand" [taskOrg]="taskOrg" [forceSide]="forceSide"></c2-entity-command-script>
+  </div>
+
+  <div *ngIf="command.UnitCommand">
+    <c2-unit-command-script [unitCommandScript]="command.UnitCommand" [taskOrg]="taskOrg" [selectedAction]="selectedAction" [forceSide]="forceSide"></c2-unit-command-script>
+  </div>
+</div>
+

@@ -1,0 +1,14 @@
+
+
+<div class="container" *ngIf="u">
+  <h4>Unit</h4>
+  <div>
+    <label>Unit Name: </label>
+    <input [(ngModel)]="u.unitName">
+  </div>
+  <div>
+    <label><a href="http://explorer.milsymb.net/#/explore/" target="_blank">Military Symbol Identifier Code:</a> </label>
+    <input [(ngModel)]="u.milstd2525Symbol">
+  </div>
+</div>
+

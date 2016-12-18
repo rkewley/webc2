@@ -1,0 +1,30 @@
+
+<div  *ngIf="selectedTrigger">
+  <h4>Action Trigger</h4>
+  <div>
+    <label>Delay in Seconds: </label>
+    <input [(ngModel)]="selectedTrigger.DelayInSeconds">
+  </div>
+  <div>
+    <label>Order of Execution: </label>
+    <input [(ngModel)]="selectedTrigger.OrderOfExecution">
+  </div>
+  <div>
+    <label>Start Signal: </label>
+    <input [(ngModel)]="selectedTrigger.StartSignal">
+  </div>
+  <div>
+    <label>Stop Signal: </label>
+    <input [(ngModel)]="selectedTrigger.StopSignal">
+  </div>
+  <div>
+    <label>Trigger Type: </label>
+    <select [(ngModel)]="selectedTrigger.TriggerType">
+      <option *ngFor="let tt of triggerTypes" [ngValue]="tt">
+        {{tt}}
+      </option>
+    </select>
+  </div>
+</div>
+
+

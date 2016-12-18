@@ -1,0 +1,15 @@
+
+<div  *ngIf="entity">
+  <h3>Entity</h3>
+  <div>
+    <label>Entity Name: </label>
+    <input [(ngModel)]="entity.entityName">
+  </div>
+  <div>
+    <label>Entity Type: </label>
+    <select [(ngModel)]="typeId" (ngModelChange)="typeSelected()">
+      <option *ngFor="let et of entityTypeKeys" [ngValue]="et">{{et}}</option>
+    </select>
+  </div>
+</div>
+
