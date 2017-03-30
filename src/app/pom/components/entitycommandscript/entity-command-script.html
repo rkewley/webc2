@@ -15,17 +15,19 @@
       <option *ngFor="let n of getEntityNames()" [value]="n">{{n}}</option>
     </select>
   </div>
-  <ol>
+  
     Select action to edit:
-    <li *ngFor="let a of commandScript.TacticalActions">
+    <ol>
+      <li *ngFor="let a of commandScript.TacticalActions; let i = index">
         <span (click)="clickAction(a)">
-           <button type="button" (click)="deleteAction(a)">{{a.ActionType}}</button>
+          {{a.ActionType}} <button type="button" (click)="deleteAction(i)">X</button>
         </span>
-    </li>
-  </ol>
+      </li>
+    </ol>
+
   <button type="button" (click)="addAction()">Add Action</button>
   <div *ngIf="selectedAction">
-    <unit-command [tacticalAction]="selectedAction"></unit-command>
+    <unit-command [tacticalAction]="selectedAction" [taskOrg]="taskOrg" [forceSide]="forceSide"></unit-command>
   </div>
 </div>
 

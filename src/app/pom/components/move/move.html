@@ -23,6 +23,7 @@
   </div>
   <div>
     <label>Tactical Graphic: </label>
+    <div *ngIf="move.RouteGraphic">     {{move.RouteGraphic.graphicName}} </div>
     <select [(ngModel)]="move.RouteGraphic">
       <option *ngFor="let g of graphics" [ngValue]="g">
         {{g.graphicName}}

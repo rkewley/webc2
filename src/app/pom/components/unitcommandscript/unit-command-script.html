@@ -12,13 +12,7 @@
   <div>
     <label>Command Sender: </label>
     <select [(ngModel)]="unitCommandScript.Sender">
-      <option *ngFor="let n of getEntityNames()" [value]="n">{{n}}</option>
-    </select>
-  </div>
-  <div>
-    <label>Command Receiver: </label>
-    <select [(ngModel)]="unitCommandScript.Receiver">
-      <option *ngFor="let n of getEntityNames()" [value]="n">{{n}}</option>
+      <option *ngFor="let n of getUnitNames()" [value]="n">{{n}}</option>
     </select>
   </div>
   <div id="action-edit">
@@ -33,7 +27,7 @@
     </ol>
     <button type="button" (click)="addAction()">Add Action</button>
     <div *ngIf="selectedAction!=null">
-      <unit-command [tacticalAction]="selectedAction"></unit-command>
+      <unit-command [tacticalAction]="selectedAction" [taskOrg]="taskOrg" [forceSide]="forceSide"></unit-command>
     </div>
   </div>
 </div>

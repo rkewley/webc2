@@ -11,5 +11,17 @@
   <div *ngIf="tacticalAction.Orient!=null">
     <c2-orient [orient]="tacticalAction.Orient"></c2-orient>
   </div>
+  <div *ngIf="tacticalAction.Mount!=null">
+    <c2-mount [mount]="tacticalAction.Mount" [forceSide]="forceSide"></c2-mount>
+  </div>
+  <div *ngIf="tacticalAction.Observe!=null">
+    <c2-observe [observe]="tacticalAction.Observe"></c2-observe>
+  </div>
+  <div *ngIf="tacticalAction.Dismount!=null">
+    <c2-dismount [dismount]="tacticalAction.Dismount"></c2-dismount>
+  </div>
+  <div *ngIf="tacticalAction.SetLoad!=null">
+    <c2-setload [setLoad]="tacticalAction.SetLoad"></c2-setload>
+  </div>
 </div>
 

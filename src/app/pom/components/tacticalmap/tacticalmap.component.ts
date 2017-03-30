@@ -62,6 +62,10 @@ export class TacticalMapComponent implements OnInit, OnChanges {
       }
     }
   }
+  
+  ngDoCheck(): void {
+    //console.log("Checking")
+  }
 
   ngOnInit() {
   }
@@ -91,6 +95,11 @@ export class TacticalMapComponent implements OnInit, OnChanges {
       }
       this.startIconsMap[e.entityId] = this.buildEntity(e)
     }
+  }
+  
+  updateEntities(): void {
+    this.entityList = UnitAggregator.toEntityObjectList(this.taskOrg)
+    this.drawEntities()
   }
 
   buildEntity(e: Entity): any {

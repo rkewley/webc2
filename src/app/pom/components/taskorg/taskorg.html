@@ -29,8 +29,8 @@
       <div>{{json}}</div>
     </div>
   </div>
-  <div class="col-xs-8 col-md-6" *ngIf="frago">
-    <c2-frago [taskOrg]="taskOrg" [frago]="frago" [forceSide]="taskOrg.forceSides[0]"></c2-frago>
+  <div class="col-xs-8 col-md-6" *ngIf="opord">
+    <opord [taskOrg]="taskOrg" [opord]="opord" [forceSide]="taskOrg.forceSides[0]"></opord>
   </div>
 </div>
 <div *ngIf="taskOrg">

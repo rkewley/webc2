@@ -19,6 +19,12 @@ import {UnitCommandScriptComponent} from "./components/unitcommandscript/unit-co
 import {EntityCommandScriptComponent} from "./components/entitycommandscript/entity-command-script.component"
 import {CommandComponent} from "./components/command/command.component"
 import {FragoComponent} from "./components/frago/frago.component"
+import {OPORDComponent} from "./components/opord/opord.component"
+import {PhaseComponent} from "./components/phase/phase.component"
+import {ObserveComponent} from "./components/observe/observe.component"
+import {MountComponent} from "./components/mount/mount.component"
+import {DismountComponent} from "./components/dismount/dismount.component"
+import {SetLoadComponent} from "./components/setload/setload.component"
 import {TacticalMapComponent} from "./components/tacticalmap/tacticalmap.component";
 
 
@@ -43,7 +49,13 @@ import {TacticalMapComponent} from "./components/tacticalmap/tacticalmap.compone
     EntityCommandScriptComponent,
     CommandComponent,
     FragoComponent,
-    TacticalMapComponent
+    TacticalMapComponent,
+    OPORDComponent,
+    PhaseComponent,
+    ObserveComponent,
+    MountComponent,
+    DismountComponent,
+    SetLoadComponent
   ],
   providers: [
     EntityTypeService,

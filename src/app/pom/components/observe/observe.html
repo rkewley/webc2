@@ -1,0 +1,17 @@
+
+
+<div  *ngIf="observe">
+  <h4>Observe</h4>
+  <div>
+    <action-trigger [selectedTrigger]="observe.ActionTrigger"></action-trigger>
+  </div>
+  <div>
+    <label>Tactical Graphic: </label>
+    <select [(ngModel)]="observe.AreaOfInterestGraphic">
+      <option *ngFor="let g of graphics" [ngValue]="g">
+        {{g.graphicName}}
+      </option>
+    </select>
+  </div>
+</div>
+

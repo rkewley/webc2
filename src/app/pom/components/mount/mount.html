@@ -1,0 +1,13 @@
+<div  *ngIf="mount">
+  <h4>Mount</h4>
+  <div>
+    <action-trigger [selectedTrigger]="mount.ActionTrigger"></action-trigger>
+  </div>
+  <div>
+    <label>Entity to mount: </label>
+    <select [(ngModel)]="mount.VehicleToMount">
+      <option *ngFor="let n of getEntityNames()" [value]="n">{{n}}</option>
+    </select>
+  </div>
+</div>
+

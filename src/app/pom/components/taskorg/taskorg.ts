@@ -30,7 +30,8 @@ export class Unit {
   public subordinateUnits: Unit[] = [],
   public subordinateEntities: Entity[] = [],
   public milstd2525Symbol: string,
-  public parentId?: string
+  public parentId?: string,
+  public fullUnitName?: string
 ){}
 }
 
@@ -51,6 +52,7 @@ export class Entity {
     public entityId: string,
     public entityType: EntityType,
     public parentId?: string,
+    public fullEntityName?: string,
     public location?: GeographicPoint,
     public entityData?: any
   ){}
@@ -76,7 +78,7 @@ export class Soldier {
 
 export class UnitAggregator {
   static unitList(unit: Unit): string[] {
-    let names: string[] = [unit.unitName]
+    let names: string[] = [unit.fullUnitName]
     for (let u of unit.subordinateUnits) {
       names = names.concat(this.unitList(u))
     }
@@ -86,7 +88,7 @@ export class UnitAggregator {
   static entityList(unit: Unit): string[] {
     let names: string[] = []
     for (let e of unit.subordinateEntities) {
-      names.push(e.entityName)
+      names.push(e.fullEntityName)
     }
     for (let u of unit.subordinateUnits) {
       names = names.concat(this.entityList(u))
@@ -109,8 +111,28 @@ export class UnitAggregator {
     }
     return names
   }
+  
+  static getUnit(unitId: string, forceSide: ForceSide): Unit {
+    let unit: Unit = null
+    for (let u of this.fsUnitObjectList(forceSide)) {
+      if(u.unitId == unitId) {
+        unit = u
+        break
+      }
+    }  
+    return unit
+  }
 
-
+  static getEntity(entityId: string, forceSide: ForceSide): Entity {
+    let entity: Entity = null
+    for (let e of this.fsEntityObjectList(forceSide)) {
+      if(e.entityId == entityId) {
+        entity = e
+        break
+      }
+    }  
+    return entity
+  }
 
 
 
@@ -156,5 +178,40 @@ export class UnitAggregator {
       entities = entities.concat(this.fsEntityObjectList(fs))
     }
     return entities
+  }
+  
+  static fullUnitName(unitId: string, forceSide: ForceSide): string {
+    let fullName: string = ""
+    let nextId: string = unitId
+    do {
+      let unit = this.getUnit(nextId, forceSide)
+      if (unit != null) {
+        fullName = unit.unitName + "/" + fullName
+        nextId = unit.parentId
+      } else {
+        nextId = null
+      }
+    } while (nextId)
+    return forceSide.forceName + "/" + fullName
+  }
+  
+  static setFullUnitName(unit: Unit, forceSide: ForceSide) {
+    unit.fullUnitName = this.fullUnitName(unit.parentId, forceSide) + unit.unitName
+  }
+  
+  static setFullEntityName(entity: Entity, forceSide: ForceSide) {
+    entity.fullEntityName = this.fullUnitName(entity.parentId, forceSide) + entity.entityName
+  }
+  
+  static setAllNames(taskOrg: TaskOrg) {
+    for (let fs of taskOrg.forceSides) {
+      for (let unit of this.fsUnitObjectList(fs)) {
+        this.setFullUnitName(unit, fs)
+      }
+      
+      for (let entity of this.fsEntityObjectList(fs)) {
+        this.setFullEntityName(entity, fs)
+      }
+    }
   }
 }

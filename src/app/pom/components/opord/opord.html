@@ -1,0 +1,27 @@
+<div class="container" *ngIf="opord">
+  <h3>OPORD</h3>
+  <div>
+    <label>Mission Name: </label>
+    <input [(ngModel)]="opord.MissionName">
+  </div>
+  <div>
+    <label>Unit: </label>
+    <select [(ngModel)]="opord.UnitName">
+      <option *ngFor="let n of getUnitNames()" [value]="n">{{n}}</option>
+    </select>
+  </div>  
+  <h2>Phases:</h2>
+  <div *ngFor="let p of opord.Phases; let i = index">
+    <phase [phase]="p" [taskOrg]="taskOrg" [forceSide]="forceSide"></phase>
+    <button type="button" (click)="deletePhase(i)">Delete Phase: {{p.PhaseName}}</button>
+  </div>
+  <div>
+    <button type="button" (click)="addPhase()">Add Phase</button>
+  </div>
+  
+  <div>
+    <button type="button" (click)="toJson()">{{buttonText}}</button>
+    <div>{{json}}</div>
+  </div>
+</div>
+

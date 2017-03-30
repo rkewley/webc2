@@ -1,0 +1,18 @@
+
+<div *ngIf="setLoad">
+  <h4>Set Load</h4>
+  <div>
+    <action-trigger [selectedTrigger]="setLoad.ActionTrigger"></action-trigger>
+  </div>
+  <div>
+    <label>Soldier load: </label>
+    <select [(ngModel)]="setLoad.Load">
+      <option *ngFor="let l of loadNames" [ngValue]="l"> {{l}}</option>>
+    </select>
+  </div>
+  <div>
+    <label>Wearing body armor:</label>
+    <input type="checkbox" [(ngModel)]="setLoad.BodyArmor">
+  </div>
+</div>
+

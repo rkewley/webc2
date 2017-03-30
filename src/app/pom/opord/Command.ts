@@ -1,19 +1,31 @@
 import {C2MoveCDT} from "../components/move/C2MoveCDT"
 import {C2OrientCDT} from "../components/orient/C2OrientCDT"
+import {C2MountCDT} from "../components/mount/C2MountCDT"
+import {C2DismountCDT} from "../components/dismount/C2DismountCDT"
+import {C2ObserveCDT} from "../components/observe/C2ObserveCDT"
+import {C2SetLoadCDT} from "../components/setload/C2SetLoadCDT"
+import {TacticalGraphic} from "./TacticalGraphic"
 
+export class OPORD
+{
+	public MissionName: string
+	public UnitName: string
+	public Phases: Phase[]
+}
 
 export class TacticalAction
 {
     public ActionType: string
     /* ClearRoom: C2ClearRoomCDT,
-    Dismount: C2DismountCDT
     Fire: C2FireCDT,
-    Halt: C2HaltCDT,
-    Mount: C2MountCDT, */
+    Halt: C2HaltCDT, */
+    public Mount?: C2MountCDT
+    public Dismount?: C2DismountCDT
     public Move?: C2MoveCDT
     public Orient?: C2OrientCDT
-    /* Observe: C2ObserveCDT,
-     Patrol: C2PatrolCDT,
+    public Observe?: C2ObserveCDT
+    public SetLoad?: C2SetLoadCDT
+    /* Patrol: C2PatrolCDT,
      SearchArea: C2SearchAreaCDT,
      SearchEntity: C2SearchEntityCDT,
      SearchRoom: C2SearchRoomCDT,
@@ -74,3 +86,59 @@ export class C2UnitCommandSignal {
   public UnitName?: string
 ){}
 }
+
+export class PhaseTrigger
+{
+	public DelayInSeconds?: number
+	public InformationRequirement?: AndInformationRequirement
+	public Signal?: string
+	public TriggerType: string
+}
+
+export class Phase 
+{
+    public Branches: Branch[]
+	public DefaultOrders: FRAGO
+	public PhaseName: string
+	public PhaseNumber: number
+	public PhaseTrigger: PhaseTrigger
+}
+
+export class InformationRequirement
+{
+	public DecidingEntity: string
+	public IRType: string
+	public ProximityRequirement: TacticalGraphicProximity 
+}
+
+export class TacticalGraphicProximity
+{
+    public Containment: boolean
+	public Proximity?: ProximityType
+	public TacticalGraphic: TacticalGraphic 
+}
+
+export class ProximityType
+{
+	public ProximityDistance: number
+	public TacticalGraphicReferencePoint: string
+}
+export class AndInformationRequirement
+{
+	public InformationRequirements: InformationRequirement[]
+	public OrInformationRequirements: OrInformationRequirement[]
+}
+
+export class Branch
+{
+	public InformationRequirement: AndInformationRequirement
+	public Orders: FRAGO
+}
+
+
+export class OrInformationRequirement
+{
+	public AndInformationRequirements: AndInformationRequirement[]
+	public InformationRequirements: InformationRequirement[]
+}
+

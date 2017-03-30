@@ -11,8 +11,8 @@ import {TaskOrg, ForceSide} from "../taskorg/taskorg"
 export class FragoComponent {
 
   selectedCommand: Command
-  json: string = ""
-  buttonText: String = "Show FRAGO JSON"
+  //json: string = ""
+  //buttonText: String = "Show FRAGO JSON"
 
   deleteCommand(commandIndex: number) {
     this.frago.commands.splice(commandIndex, 1)
@@ -32,7 +32,8 @@ export class FragoComponent {
     this.frago.commands.push(command)
     this.selectedCommand = command
   }
-
+ 
+  /*
   toJson(): void {
     if (this.json === "") {
       this.json = JSON.stringify(this.frago, null, '\t')
@@ -43,6 +44,7 @@ export class FragoComponent {
 
     }
   }
+  */
 
   @Input()
   forceSide: ForceSide

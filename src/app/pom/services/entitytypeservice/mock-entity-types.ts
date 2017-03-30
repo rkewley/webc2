@@ -30,9 +30,26 @@ entityTypes.Add("Automatic Rifleman", ar)
 
 let sbs:EntityType = {
   typeId: "SoldierBorneSensor",
-  milstd2525Symbol: "S*G*UCIL----***",
+  milstd2525Symbol: "10230100001104001800",
   acquireStandardName: "SoldierBorneSensor",
   entityTypeData: undefined
 }
 entityTypes.Add("SoldierBorneSensor", sbs)
+
+let enemySoldier: EntityType = {
+  typeId: "EnemySoldier",
+  milstd2525Symbol: "10261500001101020000",
+  acquireStandardName: "ICFullyLoaded_entity",
+  entityTypeData: undefined
+}
+entityTypes.Add("Enemy Soldier", enemySoldier)
+
+
+let enemyMachineGunner: EntityType = {
+  typeId: "EnemyMachineGunner",
+  milstd2525Symbol: "10261500001102020000",
+  acquireStandardName: "ICFullyLoaded_entity",
+  entityTypeData: undefined
+}
+entityTypes.Add("Enemy Machine Gunner", enemyMachineGunner)
 export const ENTITY_TYPE_MAP: StringMap<EntityType> = entityTypes

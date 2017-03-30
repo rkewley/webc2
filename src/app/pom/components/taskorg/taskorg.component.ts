@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core"
-import { Unit, UnitType, Entity, TaskOrg } from "./taskorg"
+import { Unit, UnitType, Entity, TaskOrg, UnitAggregator } from "./taskorg"
 import {TaskOrgService} from "../../services/taskorgservice/taskorg.service"
 import {MilSymbolComponent} from "../milsymbol/milsymbol.component"
 import {SymbolInput} from "../milsymbol/milsymbol.component"
@@ -7,7 +7,7 @@ import {UnitTreeComponent} from "./unit/unittree.component"
 import {EntityComponent} from "./entity/entity.component"
 import {UnitComponent} from "./unit/unit.component"
 import {OpordService} from "../../services/opordservice/opord.service"
-import {FRAGO, C2UnitCommandScript} from "../../opord/Command"
+import {OPORD, C2UnitCommandScript} from "../../opord/Command"
 import {UnitCommandScriptComponent} from "../unitcommandscript/unit-command-script.component"
 import {TacticalGraphic} from "../../opord/TacticalGraphic";
 import {ForceSide} from "./taskorg";
@@ -26,7 +26,7 @@ export class TaskOrgComponent implements OnInit {
   selectedEntity: Entity = undefined
   selectedUnit: Unit = undefined
   json: string = ""
-  frago: FRAGO = undefined
+  opord: OPORD = undefined
   buttonText: String = "Show Task Org JSON"
 
   ngOnInit(): void {
@@ -38,13 +38,18 @@ export class TaskOrgComponent implements OnInit {
 
 
   getTaskOrg(): void {
-    this.taskOrgService.getTaskOrg().then(to =>
+    this.taskOrgService.getTaskOrg().then(to => {
       this.taskOrg = to
-    )
+      this.setAllNames()
+    })
+  }
+  
+  setAllNames(): void {
+    UnitAggregator.setAllNames(this.taskOrg)
   }
 
   getOpord(): void {
-    this.opordService.getOpord().then(o => this.frago = o)
+    this.opordService.getOpord().then(o => this.opord = o)
   }
 
   onNotifySelectedEntity(e: Entity): void {
@@ -72,6 +77,7 @@ export class TaskOrgComponent implements OnInit {
 
   toJson(): void {
     if (this.json === "") {
+      this.setAllNames()
       this.json = JSON.stringify(this.taskOrg, null, '\t')
       this.buttonText = "Hide Task Org JSON"
     } else {

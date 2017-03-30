@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core"
+import { Component, Input, SimpleChanges } from "@angular/core"
 import { C2UnitCommandScript, TacticalAction } from "../../opord/Command"
 import {UnitAggregator, TaskOrg, ForceSide} from "../taskorg/taskorg"
 import {ActionTriggerCDT} from "../actiontrigger/ActionTriggerCDT"
@@ -33,6 +33,10 @@ export class UnitCommandScriptComponent {
     let action = new TacticalAction()
     this.unitCommandScript.TacticalActions.push(action)
     this.selectedAction = action
+  }
+  
+  ngOnChanges(changes: SimpleChanges) {
+    this.unitCommandScript.Receiver = this.unitCommandScript.UnitName
   }
 
   @Input()

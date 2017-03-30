@@ -1,0 +1,39 @@
+<div class="container" *ngIf="phase">
+  <div>
+    <label>Phase Name: </label>
+    <input [(ngModel)]="phase.PhaseName">
+  </div>
+  <div>
+    <label>Phase Number: </label>
+    <input [(ngModel)]="phase.PhaseNumber">
+  </div>
+  <div class="container">
+    <div>
+      <label>Phase Trigger Type: </label>
+      <select [(ngModel)]="phase.PhaseTrigger.TriggerType">
+        <option *ngFor="let tt of phaseTriggerTypes" [ngValue]="tt">
+          {{tt}}
+        </option>
+      </select>
+    </div>
+    <div *ngIf="phase.PhaseTrigger.TriggerType=='Delay'">
+      <label>DelayInSeconds: </label>
+      <input [(ngModel)]="phase.PhaseTrigger.DelayInSeconds">
+    </div>
+    <div *ngIf="phase.PhaseTrigger.TriggerType=='Signal'">
+      <label>Signal: </label>
+      <input [(ngModel)]="phase.PhaseTrigger.Signal">
+    </div>
+    <div *ngIf="phase.PhaseTrigger.TriggerType=='Information'">
+      Information Requirement not yet available in the interface
+    </div>
+  </div>
+  <div>
+    Default Orders:
+    <c2-frago [frago]="phase.DefaultOrders" [taskOrg]="taskOrg" [forceSide]="forceSide"></c2-frago>
+  </div>
+  Branches:
+  <div *ngFor="let b of phase.Branches; let i = index">
+    <!--branch [branch]="b" [taskOrg]="taskOrg" [forceSide]="forceSide"-->
+  </div>
+</div>

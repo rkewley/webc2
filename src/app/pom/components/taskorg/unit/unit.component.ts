@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core"
-import { Unit, UnitType, Entity } from "../taskorg"
+import { Unit, UnitType, Entity,  } from "../taskorg"
 import {UnitTypeService} from "../../../services/unittypeservice/unit-type.service"
 
 @Component({
