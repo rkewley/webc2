@@ -16,10 +16,8 @@
     </select>
   </div>
   <div>
-    <label>Movement speed: </label>
-    <select [(ngModel)]="move.MoveSpeed">
-      <option *ngFor="let s of speedNames" [ngValue]="s"> {{s}}</option>>
-    </select>
+    <label>Movement speed (km/hr): </label>
+    <input [(ngModel)]="move.MoveSpeed">
   </div>
   <div>
     <label>Tactical Graphic: </label>

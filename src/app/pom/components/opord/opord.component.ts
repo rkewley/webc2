@@ -26,6 +26,12 @@ export class OPORDComponent {
     return newPhase
   }
   
+  getSortedPhases(): Phase[] {
+    return this.opord.Phases.sort((phase1, phase2): number => {
+      return phase1.PhaseNumber - phase2.PhaseNumber
+    })
+  }
+  
   addPhase(): void {
     this.opord.Phases.push(this.createBlankPhase())
   }

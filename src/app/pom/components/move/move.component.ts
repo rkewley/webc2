@@ -27,14 +27,6 @@ export class MoveComponent implements OnInit {
     this.graphicService.getGraphics().then(gr => this.graphics = gr)
   }
 
-  speedNames: Array<string> = [
-    "Crawl",
-    "Dash",
-    "Normal",
-    "Quick",
-    "Slow"
-  ]
-
 
   formationNames: Array<String> = [
     "ASSAULT_VEE",

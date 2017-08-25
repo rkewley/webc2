@@ -11,7 +11,7 @@
     </select>
   </div>  
   <h2>Phases:</h2>
-  <div *ngFor="let p of opord.Phases; let i = index">
+  <div *ngFor="let p of getSortedPhases(); let i = index">
     <phase [phase]="p" [taskOrg]="taskOrg" [forceSide]="forceSide"></phase>
     <button type="button" (click)="deletePhase(i)">Delete Phase: {{p.PhaseName}}</button>
   </div>

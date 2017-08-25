@@ -4,7 +4,7 @@ export class C2MoveCDT {
   ActionTrigger: ActionTriggerCDT
   AltMetersAGL: number
   Formation: string
-  MoveSpeed: string
+  MoveSpeed: number
   RouteGraphic: TacticalGraphic
 }
 
